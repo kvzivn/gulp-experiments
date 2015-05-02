@@ -1,12 +1,39 @@
 (function() {
     'use strict';
 
-    var gulp = require('gulp');
+    var gulp = require('gulp'),
+    	git = require('gulp-git'),
+        bump = require('gulp-bump');
 
-    require('require-dir')('./gulp');
+    gulp.task('bump', function bump() {
+      var bumpType = process.env.BUMP || 'patch'; // major.minor.patch
 
-    gulp.task('default', function () {
-        gulp.start('build');
+      return gulp.src(['./package.json'])
+        .pipe(bump({ type: bumpType }))
+        .pipe(gulp.dest('./'));
     });
+
+    gulp.task('tag', function (done) {
+      var pkg = require('./package.json');
+      var v = 'v' + pkg.version;
+      var message = 'Release ' + v;
+
+      gulp.src('./')
+        .pipe(git.commit(message))
+        .pipe(gulp.dest('./'))
+        .on('end', tag);
+
+      function tag () {
+        git.tag(v, message);
+        git.push('origin', 'master', { args: '--tags' }).end();
+        done();
+      }
+    });
+
+    gulp.task('commit', function(){
+	  return gulp.src('./*')
+	    .pipe(git.commit('initial commit'));
+	});
+
 
 }());
