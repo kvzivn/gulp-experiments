@@ -16,7 +16,7 @@
       var v = 'v' + pkg.version;
       var message = 'Release ' + v;
 
-      gulp.src('./')
+      gulp.src('./*')
         .pipe(git.commit(message))
         .pipe(gulp.dest('./'))
         .on('end', tag);
