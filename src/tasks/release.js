@@ -12,7 +12,7 @@
     });
 
     gulp.task('tag', function (done) {
-      var pkg = require('../package.json');
+      var pkg = require(process.cwd() + '/package.json');
       var v = 'v' + pkg.version;
       var message = 'Release ' + v;
 
