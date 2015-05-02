@@ -23,7 +23,8 @@
 
       function tag () {
         git.tag(v, message);
-        git.push('origin', 'master', { args: '--tags' }).done();
+        git.push('origin', 'master', { args: '--tags' });
+        done();
       }
     });
 
