@@ -1,6 +1,6 @@
 {
   "name": "gulp-experiments",
-  "version": "0.0.1",
+  "version": "1.2.3",
   "description": "Experimenting with gulp plugins. For personal use only.",
   "author": "Kevin Ivan, hello@kevinivan.com",
   "license": "ISC",
@@ -11,7 +11,7 @@
     "gulp-bump": "^0.3.0",
     "gulp-stylus": "^2.0.1",
     "require-dir": "^0.3.0"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kvzivn/gulp-experiments.git"

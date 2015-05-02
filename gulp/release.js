@@ -5,16 +5,14 @@
         git = require('gulp-git'),
         bump = require('gulp-bump');
 
-    gulp.task('bump', function bump() {
-      var bumpType = process.env.BUMP || 'patch'; // major.minor.patch
-
-      return gulp.src(['./package.json'])
-        .pipe(bump({ type: bumpType }))
-        .pipe(gulp.dest('./'));
+    gulp.task('bump', function (params) {
+        gulp.src('./package.json')
+            .pipe(bump({ type: gulp.env.type }))
+            .pipe(gulp.dest('./'));
     });
 
-    gulp.task('tag', ['bump'], function (done) {
-      var pkg = require('./package.json');
+    gulp.task('tag', function (done) {
+      var pkg = require('../package.json');
       var v = 'v' + pkg.version;
       var message = 'Release ' + v;
 
@@ -29,8 +27,6 @@
         done();
       }
     });
-
-    gulp.task('release', ['tag']);
 
 }());
 

@@ -2,7 +2,7 @@
     'use strict';
 
     var gulp = require('gulp'),
-    	git = require('gulp-git'),
+    	  git = require('gulp-git'),
         bump = require('gulp-bump');
 
     gulp.task('bump', function bump() {
@@ -31,8 +31,8 @@
     });
 
     gulp.task('commit', function(){
-	  return gulp.src('./*')
-	    .pipe(git.commit('initial commit'));
+  	  return gulp.src('./*')
+  	    .pipe(git.commit('initial commit'));
 	});
 
 
